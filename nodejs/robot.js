@@ -5,20 +5,30 @@ const { clamp } = require("./math/utils");
 
 const MAX_SPEED = 10;
 
+// Esta clase representa un robot. Incluye funciones primitivas de navegación
+// que permiten mover al robot en la cancha. Estas funciones de navegación no 
+// tienen un efecto inmediato en el simulador sino que recién se aplican en el 
+// siguiente ciclo de simulación.
 class Robot {
-    role;
-    snapshot;
-    leftVelocity = 0;
-    rightVelocity = 0;
-    teamMessages = [];
+    role; // El rol define el comportamiento del robot
+    snapshot; // La snapshot contiene la información actualizada del mundo
+    leftVelocity = 0; // Velocidad del motor izquierdo
+    rightVelocity = 0; // Velocidad del motor derecho
+    teamMessages = []; // Mensajes a enviar al resto del equipo
 
     constructor(role) {
         this.role = role;
     }
 
-    get rotation() { return this.snapshot.robot.rotation; }
+    // La posición y rotación del robot las obtenemos de la snapshot
     get position() { return this.snapshot.robot.position; }
+    get rotation() { return this.snapshot.robot.rotation; }
 
+    // La función "loop" se ejecuta en cada iteración. Recibe la información
+    // del mundo y devuelve el mensaje a enviar al simulador, el cual contiene
+    // las velocidades a aplicar a cada motor y los mensajes para el resto
+    // del equipo. 
+    // El comportamiento del robot se define en el método "run" (ver más abajo)
     loop(data) {
         this.snapshot = new Snapshot(data);
         this.run();
@@ -31,10 +41,13 @@ class Robot {
         };
     }
 
+    // Encola un mensaje para el resto del equipo
     sendDataToTeam(data) {
         this.teamMessages.push(data);
     }
 
+    // Modifica la velocidad de los motores de forma que el robot gire hacia 
+    // el ángulo especificado. Tiene en cuenta la simetría del robot.
     lookAtAngle(a) {
         let vl, vr;
         let ra = this.rotation;
@@ -64,6 +77,8 @@ class Robot {
         this.rightVelocity = vr * MAX_SPEED;
     }
 
+    // Modifica la velocidad de los motores de forma que el robot gire para
+    // "mirar" al punto especificado. Tiene en cuenta la simetría del robot
     lookAtPoint(point) {
         let rx = this.position.x;
         let ry = this.position.y;
@@ -72,6 +87,8 @@ class Robot {
         this.lookAtAngle(new Point(px - rx, py - ry).angle);
     }
 
+    // Modifica la velocidad de los motores de manera que el robot se acerque
+    // al punto especificado. Tiene en cuenta la simetría del robot.
     moveToPoint(point) {
         let vl, vr;
         let rx = this.position.x;
@@ -99,14 +116,22 @@ class Robot {
         this.rightVelocity = vr * MAX_SPEED;
     }
 
+    // Modifica la velocidad de los motores de forma que el robot se acerque a 
+    // la pelota. Tiene en cuenta la simetría del robot.
     moveToBall() {
         this.moveToPoint(this.snapshot.ball.position);
     }
 
+    // El método "run" implementa la lógica de comportamiento del robot
     run() {
+        // Si el robot detectó la señal de la pelota en este ciclo de simulación 
+        // le comunica esta información a sus compañeros de forma que todos los
+        // robots tengan información aproximada de la ubicación de la pelota
         if (this.snapshot.isBallDetected()) {
             this.sendDataToTeam(this.snapshot.ball);
         }
+        
+        // El comportamiento del robot depende del rol que tenga asignado
         this.role.applyOn(this, this.snapshot);
     }
 }
