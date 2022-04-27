@@ -2,6 +2,7 @@ const Server = require("./rsproxy/server");
 const Robot = require("./robot");
 const { BallFollower, Goalkeeper } = require("./roles");
 
+// Declaramos una variable para contener a nuestros robots
 let robots;
 
 // La función "setup" se ejecuta cuando comienza el partido
