@@ -1,4 +1,4 @@
-const Server = require("./server");
+const Server = require("./rsproxy/server");
 const Robot = require("./robot");
 const { BallFollower, Goalkeeper } = require("./roles");
 
