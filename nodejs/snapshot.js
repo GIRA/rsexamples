@@ -1,4 +1,4 @@
-const angle = require("./math/angle");
+const Angle = require("./math/angle");
 const Point = require("./math/point");
 
 class Snapshot {
@@ -27,7 +27,7 @@ class Snapshot {
             name: robot_data.name,
             index: robot_data.index,
             position: new Point(x, y),
-            rotation: angle.radians(Math.atan2(cx, cy) + Math.PI/2)
+            rotation: Angle.radians(Math.atan2(cx, cy) + Math.PI/2)
         };
     }
 
@@ -36,8 +36,8 @@ class Snapshot {
         let dist = Math.sqrt(1/ball_data.strength);
         let x, y;
         [x, y] = ball_data.direction;
-        let da = angle.radians(Math.atan2(y, x));
-        let a = angle.radians(this.robot.rotation + da);
+        let da = Angle.radians(Math.atan2(y, x));
+        let a = Angle.radians(this.robot.rotation + da);
         let dx = Math.sin(a) * dist;
         let dy = Math.cos(a) * -1 * dist;
         let bx = this.robot.position.x + dx;

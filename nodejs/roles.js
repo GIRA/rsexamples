@@ -1,4 +1,4 @@
-const angle = require("./math/angle");
+const Angle = require("./math/angle");
 const Point = require("./math/point");
 
 class BallFollower {
@@ -16,7 +16,7 @@ class Goalkeeper {
         let ball = snapshot.ball ? snapshot.ball.position : Point.ORIGIN;
         let target = new Point(ball.x, -0.55);
         if (robot.position.dist(target) < 0.01) {
-            robot.lookAtAngle(angle.degrees(90));
+            robot.lookAtAngle(Angle.degrees(90));
         } else {
             robot.moveToPoint(target);
         }

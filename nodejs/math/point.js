@@ -1,4 +1,4 @@
-const angle = require("./angle");
+const Angle = require("./angle");
 const { clamp } = require("./utils");
 
 class Point {
@@ -36,8 +36,8 @@ class Point {
     get magnitude() { return this.dist(Point.ORIGIN); }
 
     get angle() {
-        if (this.x == 0 && this.y == 0) return angle.radians(0);
-        return angle.radians(Math.atan2(this.x * -1, this.y));
+        if (this.x == 0 && this.y == 0) return Angle.radians(0);
+        return Angle.radians(Math.atan2(this.x * -1, this.y));
     }
 }
 

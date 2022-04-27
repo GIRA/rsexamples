@@ -1,4 +1,4 @@
-const angle = require("./math/angle");
+const Angle = require("./math/angle");
 const Point = require("./math/point");
 const Snapshot = require("./snapshot");
 const { clamp } = require("./math/utils");
@@ -38,15 +38,15 @@ class Robot {
     lookAtAngle(a) {
         let vl, vr;
         let ra = this.rotation;
-        let delta = Math.min(angle.dist(a, ra), angle.dist(a, angle.opposite(ra)));
-        let threshold = angle.degrees(1);
+        let delta = Math.min(Angle.dist(a, ra), Angle.dist(a, Angle.opposite(ra)));
+        let threshold = Angle.degrees(1);
 
         if (delta < threshold) {
             vl = 0;
             vr = 0;
         } else {
-            let vel = clamp(delta / angle.degrees(30), 0, 1);
-            let p = Point.fromAngle(angle.radians(a - ra));
+            let vel = clamp(delta / Angle.degrees(30), 0, 1);
+            let p = Point.fromAngle(Angle.radians(a - ra));
             if (p.x < 0) {
                 vl = vel * -1;
                 vr = vel;
@@ -80,9 +80,9 @@ class Robot {
         let py = point.y;
         let a = new Point(px - rx, py - ry).angle;
         let ra = this.rotation;
-        let delta = Math.min(angle.dist(a, ra), angle.dist(a, angle.opposite(ra)));
-        let decrease = (angle.r2d(delta) / 90) * 2;
-        let p = Point.fromAngle(angle.radians(a - ra));
+        let delta = Math.min(Angle.dist(a, ra), Angle.dist(a, Angle.opposite(ra)));
+        let decrease = (Angle.r2d(delta) / 90) * 2;
+        let p = Point.fromAngle(Angle.radians(a - ra));
         if (p.x < 0) {
             vl = 1 - decrease;
             vr = 1;
