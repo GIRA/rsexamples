@@ -25,7 +25,7 @@ class Point {
     }
 
     x; y;
-    
+
     constructor(x, y) {
         this.x = x;
         this.y = y;
@@ -45,6 +45,14 @@ class Point {
     get angle() {
         if (this.x == 0 && this.y == 0) return Angle.radians(0);
         return Angle.radians(Math.atan2(this.x * -1, this.y));
+    }
+
+    // Devuelve el punto más cercano cuyas coordenadas estén dentro
+    // del rectángulo pasado como parámetro.
+    keepInsideRectangle(rect) {
+        let x = clamp(this.x, rect.origin.x, rect.corner.x);
+        let y = clamp(this.y, rect.origin.y, rect.corner.y);
+        return new Point(x, y);
     }
 }
 
