@@ -1,25 +1,22 @@
 const Server = require("./server");
+const Robot = require("./robot");
+const { BallFollower, Goalkeeper } = require("./roles");
 
-const port = process.argv[2];
+let robots;
 
 function setup() {
-    console.log("SETUP");
+    robots = [
+        new Robot(new Goalkeeper()),
+        new Robot(new BallFollower()),
+        new Robot(new BallFollower()),
+    ];
 }
 
 function loop(snapshot) {
-    console.log(snapshot);
-    let vl = -10;
-    let vr = 10;
-    if (snapshot.robot.index == 0) {
-      vl *= -1;
-      vr *= -1;
-    }
-    return {
-      team: ["Hola, soy " + snapshot.robot.name],
-      L: vl,
-      R: vr,
-    };
-  }
+    let robot = robots[snapshot.robot.index];
+    return robot.loop(snapshot);
+}
 
+const port = process.argv[2];
 var server = new Server(setup, loop);
 server.start(port);
