@@ -79,11 +79,9 @@ class Robot {
 
     // Modifica la velocidad de los motores de forma que el robot gire para
     // "mirar" al punto especificado. Tiene en cuenta la simetría del robot
-    lookAtPoint(point) {
-        let rx = this.position.x;
-        let ry = this.position.y;
-        let px = point.x;
-        let py = point.y;
+    lookAtPoint(point) {        
+        let {x: rx, y: ry} = this.position;
+        let {x: px, y: py} = point;
         this.lookAtAngle(new Point(px - rx, py - ry).angle);
     }
 
@@ -91,10 +89,8 @@ class Robot {
     // al punto especificado. Tiene en cuenta la simetría del robot.
     moveToPoint(point) {
         let vl, vr;
-        let rx = this.position.x;
-        let ry = this.position.y;
-        let px = point.x;
-        let py = point.y;
+        let {x: rx, y: ry} = this.position;
+        let {x: px, y: py} = point;
         let a = new Point(px - rx, py - ry).angle;
         let ra = this.rotation;
         let delta = Math.min(Angle.dist(a, ra), Angle.dist(a, Angle.opposite(ra)));

@@ -29,9 +29,8 @@ class Snapshot {
     // Procesa los sensores del robot (gps y compass) para obtener la posición y
     // rotación del robot
     processRobotSensors(robot_data) {
-        let x, y, cx, cy;
-        [x, y] = robot_data.gps;
-        [cx, cy] = robot_data.compass;
+        let [x, y] = robot_data.gps;
+        let [cx, cy] = robot_data.compass;
         this.robot = {
             name: robot_data.name,
             index: robot_data.index,
