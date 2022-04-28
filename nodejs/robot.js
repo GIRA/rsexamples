@@ -51,7 +51,7 @@ class Robot {
     lookAtAngle(a) {
         let vl, vr;
         let ra = this.rotation;
-        let delta = Math.min(Angle.dist(a, ra), Angle.dist(a, Angle.opposite(ra)));
+        let delta = Math.min(Angle.diff(a, ra), Angle.diff(a, Angle.opposite(ra)));
         let threshold = Angle.degrees(1);
 
         if (delta < threshold) {
@@ -93,7 +93,7 @@ class Robot {
         let {x: px, y: py} = point;
         let a = new Point(px - rx, py - ry).angle;
         let ra = this.rotation;
-        let delta = Math.min(Angle.dist(a, ra), Angle.dist(a, Angle.opposite(ra)));
+        let delta = Math.min(Angle.diff(a, ra), Angle.diff(a, Angle.opposite(ra)));
         let decrease = (Angle.r2d(delta) / 90) * 2;
         let p = Point.fromAngle(Angle.radians(a - ra));
         if (p.x < 0) {

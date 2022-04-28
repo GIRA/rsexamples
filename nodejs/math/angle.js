@@ -26,23 +26,23 @@ function opposite(rad) {
     return normalize(rad + Math.PI);
 }
 
-// Calcula la "separación" entre 2 ángulos, yendo en sentido horario
+// Calcula la diferencia entre 2 ángulos, yendo en sentido horario
 // desde el ángulo "a" hasta el ángulo "b" 
-function distClockwise(a, b) {
+function diffClockwise(a, b) {
     return normalize(a - b);
 }
 
-// Calcula la "separación" entre 2 ángulos, yendo en sentido antihorario
+// Calcula la diferencia entre 2 ángulos, yendo en sentido antihorario
 // desde el ángulo "a" hasta el ángulo "b"
-function distCounterclockwise(a, b) {
+function diffCounterclockwise(a, b) {
     return normalize(b - a);
 }
 
-// Calcula la "separación" mínima entre 2 ángulos, independiente del sentido
-function dist(a, b) {
+// Calcula la diferencia mínima entre 2 ángulos, independiente del sentido
+function diff(a, b) {
     return Math.min(
-        distClockwise(a, b), 
-        distCounterclockwise(a, b)
+        diffClockwise(a, b), 
+        diffCounterclockwise(a, b)
     );
 }
 
@@ -52,7 +52,7 @@ module.exports = {
     radians: radians,
     degrees: degrees,
     opposite: opposite,
-    dist: dist,
-    distClockwise: distClockwise,
-    distCounterclockwise: distCounterclockwise,
+    diff: diff,
+    diffClockwise: diffClockwise,
+    diffCounterclockwise: diffCounterclockwise,
 };
