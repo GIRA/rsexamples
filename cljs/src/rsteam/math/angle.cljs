@@ -22,16 +22,16 @@
 (defn opposite [r]
   (normalize (+ r PI)))
 
-(defn- dist-clockwise [a b] (normalize (- a b)))
-(defn- dist-counterclockwise [a b] (normalize (- b a)))
+(defn- diff-clockwise [a b] (normalize (- a b)))
+(defn- diff-counterclockwise [a b] (normalize (- b a)))
 
-(defn dist
+(defn diff
   ([a b]
-    (min (dist-clockwise a b)
-         (dist-counterclockwise a b)))
+    (min (diff-clockwise a b)
+         (diff-counterclockwise a b)))
   ([a b mode]
     (case mode
-      :clockwise (dist-clockwise a b)
-      :counterclockwise (dist-counterclockwise a b)
+      :clockwise (diff-clockwise a b)
+      :counterclockwise (diff-counterclockwise a b)
       (throw (ex-info "Invalid mode" {:angles [a b]
                                       :mode mode})))))

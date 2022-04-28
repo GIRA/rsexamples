@@ -10,8 +10,8 @@
   (mapv (partial * MAX_SPEED)
         (let [angle (p/angle (p/point :x (- px rx)
                                       :y (- py ry)))
-              diff (min (a/dist angle ra)
-                        (a/dist angle (a/opposite ra)))
+              diff (min (a/diff angle ra)
+                        (a/diff angle (a/opposite ra)))
               decrease (* 2 (/ (a/radians-to-degrees diff) 90))
               {:keys [x y]} (p/angle->point (a/radians (- angle ra)))
               wheels (if (neg? x)
@@ -23,8 +23,8 @@
 
 (defn look-at-angle [{ra :a} angle]
   (mapv (partial * MAX_SPEED)
-        (let [delta (min (a/dist angle ra)
-                         (a/dist angle (a/opposite ra)))
+        (let [delta (min (a/diff angle ra)
+                         (a/diff angle (a/opposite ra)))
               threshold (a/degrees 1)]
           (if (< delta threshold)
             [0 0]
