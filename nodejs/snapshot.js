@@ -47,8 +47,7 @@ class Snapshot {
     processBallSignal(ball_data) {
         if (!ball_data) return null;
         let dist = Math.sqrt(1/ball_data.strength);
-        let x, y;
-        [x, y] = ball_data.direction;
+        let [x, y] = ball_data.direction;
         let da = Angle.radians(Math.atan2(y, x));
         let a = Angle.radians(this.robot.rotation + da);
         let dx = Math.sin(a) * dist;
@@ -66,7 +65,10 @@ class Snapshot {
         // primera mano y podemos ignorar los mensajes del equipo
         if (!this.ball) {
             if (team_data && team_data.length > 0) {
-                this.ball = team_data[0];
+                let {x, y} = team_data[0];
+                this.ball = {
+                    position: new Point(x, y) 
+                };
             }
         }
     }

@@ -128,7 +128,7 @@ class Robot {
         // le comunica esta información a sus compañeros de forma que todos los
         // robots tengan información aproximada de la ubicación de la pelota
         if (this.snapshot.isBallDetected()) {
-            this.sendDataToTeam(this.snapshot.ball);
+            this.sendDataToTeam(this.snapshot.ball.position);
         }
         
         // El comportamiento del robot depende del rol que tenga asignado
