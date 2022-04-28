@@ -3,7 +3,7 @@ import sys
 import socket
 import json
 
-port = int(sys.argv[1])
+port = 12345 #int(sys.argv[1])
 
 class UDPServer:
     def __init__(self, setup, loop):

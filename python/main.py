@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 from rsproxy.server import Server
-from robots import Robot1, Robot2, Robot3
+from robot import Robot
+from roles import (BallFollower, Goalkeeper)
 
 def setup():
     global robots
-    robots = [Robot1(), Robot2(), Robot3()]
+    robots = [Robot(Goalkeeper()),
+            Robot(BallFollower()),
+            Robot(BallFollower())]
 
 def loop(snapshot):
     robot = robots[snapshot["robot"]["index"]]
