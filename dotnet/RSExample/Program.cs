@@ -6,7 +6,9 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace RSProxy
+using RSProxy;
+
+namespace RSExample
 {
     class Program
     {
