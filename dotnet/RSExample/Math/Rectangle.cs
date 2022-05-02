@@ -4,6 +4,8 @@ using System.Text;
 
 namespace RSExample.Math
 {
+    // Representa un rectángulo alineado al eje. Está compuesto por dos 
+    // puntos: "origin" y "corner". 
     class Rectangle
     {
         public Rectangle(Point origin, Point corner)
@@ -15,6 +17,8 @@ namespace RSExample.Math
         public Point Origin { get; }
         public Point Corner { get; }
 
+        // Devuelve un nuevo rectángulo "agrandado" por las dimensiones 
+        // especificadas para el eje X e Y
         public Rectangle GrowBy(float x, float y)
         {
             var ox = Origin.X - x;
@@ -24,6 +28,8 @@ namespace RSExample.Math
             return new Rectangle(new Point(ox, oy), new Point(cx, cy));
         }
 
+        // Devuelve un nuevo rectángulo "achicado" por las dimensiones 
+        // especificadas para el eje X e Y
         public Rectangle ShrinkBy(float x, float y)
         {
             var ox = Origin.X + x;
@@ -33,6 +39,8 @@ namespace RSExample.Math
             return new Rectangle(new Point(ox, oy), new Point(cx, cy));
         }
 
+        // Devuelve true si el punto dado como parámetro está contenido dentro
+        // de los límites del rectángulo
         public bool ContainsPoint(Point point)
         {
             var x = point.X;
