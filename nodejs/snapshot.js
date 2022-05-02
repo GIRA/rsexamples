@@ -44,7 +44,7 @@ class Snapshot {
     // robot porque la dirección e intensidad de la señal son relativas a la
     // posición y orientación del robot.
     processBallSignal(ball_data) {
-        if (!ball_data) return null;
+        if (!ball_data) return;
         let dist = Math.sqrt(1/ball_data.strength);
         let [x, y] = ball_data.direction;
         let da = Angle.radians(Math.atan2(y, x));

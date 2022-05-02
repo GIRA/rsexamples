@@ -54,7 +54,7 @@ class Snapshot:
     # robot porque la dirección e intensidad de la señal son relativas a la
     # posición y orientación del robot.
     def processBallSignal(self, ball_data):
-        if ball_data == None: return None
+        if ball_data == None: return
         dist = math.sqrt(1/ball_data["strength"])
         x, y, _ = ball_data["direction"]
         da = radians(math.atan2(y, x))
