@@ -8,6 +8,6 @@ To build the project:
 
     $ dotnet build RSExample
 
-To execute the project (once it was built) you need to pass the desired port as argument:
+To build and run the project you need to pass the desired port as argument:
 
-    $ dotnet run -p RSExample <port>
+    $ dotnet run --project RSExample <port>
