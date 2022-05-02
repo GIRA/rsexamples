@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RSProxy": {
+      "commandName": "Project",
+      "commandLineArgs": "12345"
+    }
+  }
+}
