@@ -9,6 +9,7 @@ namespace RSProxy
         public float time;
         public bool waiting_for_kickoff;
         public RobotData robot;
+        public BallData ball;
         public object[] team;
     }
     
@@ -28,6 +29,12 @@ namespace RSProxy
         public float right;
         public float front;
         public float back;
+    }
+
+    public class BallData
+    {
+        public float[] direction;
+        public float strength;
     }
 
     public class ResponseData

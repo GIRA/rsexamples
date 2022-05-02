@@ -12,31 +12,22 @@ namespace RSExample
 {
     class Program
     {
+        static Robot[] robots;
+
         static void Setup() 
         {
-            Console.WriteLine("SETUP!");
+            robots = new[]
+            {
+                new Robot(new Goalkeeper()),
+                new Robot(new BallFollower()),
+                new Robot(new BallFollower())
+            };
         }
 
         static ResponseData Loop(SnapshotData snapshot) 
         {
-            if (snapshot.team != null) 
-            {
-                Console.WriteLine("====");
-                foreach (var msg in snapshot.team)
-                {
-                    Console.WriteLine(msg.ToString());
-                }
-            }
-
-            return new ResponseData
-            {
-                team = new [] 
-                { 
-                    "Hola, soy " + snapshot.robot.name
-                },
-                L = 10,
-                R = -10
-            };
+            var robot = robots[snapshot.robot.index];
+            return robot.Loop(snapshot);
         }
 
         static void Main(string[] args)
