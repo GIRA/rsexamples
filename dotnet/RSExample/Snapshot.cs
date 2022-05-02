@@ -1,4 +1,5 @@
-﻿using RSExample.Math;
+﻿using Newtonsoft.Json.Linq;
+using RSExample.Math;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -78,9 +79,16 @@ namespace RSExample
             Ball = new BallData(position: new Point(bx, by));
         }
 
-        private void MergeTeamData(object[] team)
+        private void MergeTeamData(JObject[] team_data)
         {
-            // TODO(Richo)
+            if (Ball == null)
+            {
+                if (team_data != null && team_data.Length > 0)
+                {
+                    var point = team_data[0].ToObject<Point>();
+                    Ball = new BallData(position: point);
+                }
+            }
         }
 
     }

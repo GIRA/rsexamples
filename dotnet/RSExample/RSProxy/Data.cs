@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,7 +11,7 @@ namespace RSProxy
         public bool waiting_for_kickoff;
         public RobotData robot;
         public BallData ball;
-        public object[] team;
+        public JObject[] team;
     }
     
     public class RobotData
