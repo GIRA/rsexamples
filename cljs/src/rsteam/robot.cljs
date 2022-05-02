@@ -6,6 +6,8 @@
 (def ^:const MAX_SPEED 10)
 
 (defn move-to-point
+  "Modifica la velocidad de los motores de manera que el robot se acerque
+   al punto especificado. Tiene en cuenta la simetría del robot."
   [{rx :x ry :y ra :a} {px :x py :y}]
   (mapv (partial * MAX_SPEED)
         (let [angle (p/angle (p/point :x (- px rx)
@@ -21,7 +23,10 @@
             wheels
             (mapv (partial * -1) wheels)))))
 
-(defn look-at-angle [{ra :a} angle]
+(defn look-at-angle 
+  "Modifica la velocidad de los motores de forma que el robot gire hacia 
+   el ángulo especificado. Tiene en cuenta la simetría del robot"
+  [{ra :a} angle]
   (mapv (partial * MAX_SPEED)
         (let [delta (min (a/diff angle ra)
                          (a/diff angle (a/opposite ra)))
@@ -38,6 +43,8 @@
                 (mapv (partial * -1) wheels)))))))
 
 (defn look-at-point 
+  "Modifica la velocidad de los motores de forma que el robot gire para
+   'mirar' al punto especificado. Tiene en cuenta la simetría del robot"
   [{rx :x ry :y, :as robot} {px :x py :y}]
   (let [angle (p/angle (p/point :x (- px rx)
                                 :y (- py ry)))]

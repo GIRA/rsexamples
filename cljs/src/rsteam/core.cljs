@@ -16,6 +16,10 @@
      :R vr}))
 
 (defn loop* [snapshot]
+  ;La función loop* se ejecuta para cada iteración del partido.
+  ; En la variable snapshot tenemos la información de los sensores 
+  ; del robot, a partir de la cual tenemos que tomar la decisión de
+  ; qué velocidad asignar a cada motor.  
   (let [robot-idx (-> snapshot :robot :index)
         known-ball? (-> snapshot :ball)]
     (-> snapshot
@@ -24,9 +28,12 @@
         (format-response robot-idx known-ball?))))
 
 (defn setup* []
+  ; La función setup* se ejecuta cuando comienza el partido
   (print "SETUP!"))
 
 (defn main [& [port]]
+  ; Iniciamos el servidor usando como puerto el valor pasado como
+  ; parámetro al programa (si no se especifica un puerto, usamos "12345")
   (s/start! server (or port "12345")
             #'setup* #'loop*))
 

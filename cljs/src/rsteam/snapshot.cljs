@@ -5,7 +5,10 @@
 (def team-names {"Y" ["Y1" "Y2" "Y3"]
                  "B" ["B1" "B2" "B3"]})
 
-(defn process-robot-sensors [snapshot]
+(defn process-robot-sensors 
+  "Procesa los sensores del robot (gps y compass) para obtener la 
+   posición y rotación del robot"
+  [snapshot]
   (update snapshot :robot
           (fn [{name :name
                 idx :index
@@ -16,7 +19,12 @@
              :x x :y y
              :a (a/radians (+ (Math/atan2 cx cy) a/HALF_PI))})))
 
-(defn process-ball-signal [snapshot]
+(defn process-ball-signal
+  "Procesa la señal de la pelota (dirección e intensidad) para obtener 
+   la posición de la misma. El cálculo requiere primero obtener la info 
+   del robot porque la dirección e intensidad de la señal son relativas 
+   a la posición y orientación del robot."
+  [snapshot]
   (let [{ox :x oy :y oa :a} (snapshot :robot)]
     (update snapshot :ball
             (fn [{:keys [direction strength] :as ball}]
@@ -30,13 +38,19 @@
                   {:x (+ ox dx)
                    :y (+ oy dy)}))))))
 
-(defn open-space-for-multiple-robots [snapshot color]
+(defn open-space-for-multiple-robots 
+  "Transforma la key :robot en :robots y la convierte en un vector de 
+   3 elementos rellenando con nil los índices correspondientes a los
+   otros robots del equipo"
+  [snapshot color]
   (-> snapshot
       (rename-keys {:robot :robots})
       (update :robots (fn [{:keys [name] :as robot}]
                         (mapv {name robot} (team-names color))))))
 
-(defn merge-team-data [snapshot team-data]
+(defn merge-team-data 
+  "Incorpora la información enviada por el resto del equipo (si la hubiera)"
+  [snapshot team-data]
   (assoc snapshot
          :ball (or (:ball snapshot)
                    (first team-data))))
