@@ -6,7 +6,7 @@ namespace RSExample.Math
 {
     // Representa un rectángulo alineado al eje. Está compuesto por dos 
     // puntos: "origin" y "corner". 
-    class Rectangle
+    public class Rectangle
     {
         public Rectangle(Point origin, Point corner)
         {

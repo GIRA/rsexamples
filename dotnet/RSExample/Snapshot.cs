@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RSExample
 {
-    class RobotData
+    public class RobotData
     {
         public RobotData(string name, int index, Point position, float rotation)
         {
@@ -22,7 +22,7 @@ namespace RSExample
         public float Rotation { get; }
     }
 
-    class BallData
+    public class BallData
     {
         public BallData(Point position)
         {
@@ -36,7 +36,7 @@ namespace RSExample
     // en el ciclo de ejecución actual.
     // Incluye los datos provenientes de los sensores del robot y aplica las transformaciones 
     // necesarias para obtener posición/rotación del robot y posición de la pelota. 
-    class Snapshot
+    public class Snapshot
     {
         public Snapshot(RSProxy.SnapshotData data)
         {

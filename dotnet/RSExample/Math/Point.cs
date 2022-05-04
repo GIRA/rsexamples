@@ -6,7 +6,7 @@ using System.Text;
 namespace RSExample.Math
 {
     // Representa un vector de 2 dimensiones (x, y)
-    class Point
+    public class Point
     {
         public static Point ORIGIN = new Point(0, 0);
 

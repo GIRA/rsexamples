@@ -10,7 +10,7 @@ namespace RSExample
     // que permiten mover al robot en la cancha. Estas funciones de navegación no 
     // tienen un efecto inmediato en el simulador sino que recién se aplican en el 
     // siguiente ciclo de simulación.
-    class Robot
+    public class Robot
     {
         const float MAX_SPEED = 10;
 
@@ -115,7 +115,7 @@ namespace RSExample
             var a = new Point(px - rx, py - ry).Angle;
             var ra = Rotation;
             var delta = MathF.Min(Angle.Diff(a, ra), Angle.Diff(a, Angle.Opposite(ra)));
-            var decrease = (Angle.R2D(delta) / 90) * 2;
+            var decrease = (Angle.RadiansToDegrees(delta) / 90) * 2;
             var p = Point.FromAngle(Angle.Radians(a - ra));
             if (p.X < 0)
             {

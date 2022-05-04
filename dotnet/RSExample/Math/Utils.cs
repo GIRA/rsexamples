@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RSExample.Math
 {
-    class Utils
+    public class Utils
     {
         // Operación módulo. Funciona correctamente con valores negativos de "n".
         // No confundir con el operador % (remainder) de C#. Ver:

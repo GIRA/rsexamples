@@ -4,15 +4,15 @@ using System.Text;
 
 namespace RSExample.Math
 {
-    class Angle
+    public class Angle
     {
         const float RADIANS_PER_DEGREE = MathF.PI / 180;
 
         // Convierte un valor en grados a radianes
-        public static float D2R(float deg) { return deg * RADIANS_PER_DEGREE; }
+        public static float DegreesToRadians(float deg) { return deg * RADIANS_PER_DEGREE; }
 
         // Convierte un valor en radianes a grados
-        public static float R2D(float rad) { return rad / RADIANS_PER_DEGREE; }
+        public static float RadiansToDegrees(float rad) { return rad / RADIANS_PER_DEGREE; }
 
         // Normaliza un valor en radianes para mantenerlo entre 0 y 2*PI
         public static float Normalize(float rad)
@@ -29,7 +29,7 @@ namespace RSExample.Math
         // Devuelve un ángulo en grados
         public static float Degrees(float deg)
         {
-            return Normalize(D2R(deg));
+            return Normalize(DegreesToRadians(deg));
         }
 
         // Devuelve el ángulo opuesto al especificado

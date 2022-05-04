@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RSExample
 {
-    interface IRole
+    public interface IRole
     {
         void ApplyOn(Robot robot, Snapshot snapshot);
     }
@@ -13,7 +13,7 @@ namespace RSExample
 
     // El rol "BallFollower" sigue ciegamente a la pelota.
     // ¡Ojo que podemos meter goles en contra! 
-    class BallFollower : IRole
+    public class BallFollower : IRole
     {
         public void ApplyOn(Robot robot, Snapshot snapshot)
         {
@@ -31,7 +31,7 @@ namespace RSExample
     }
 
     // El rol "Goalkeeper" implementa un arquero básico
-    class Goalkeeper : IRole
+    public class Goalkeeper : IRole
     {
         public void ApplyOn(Robot robot, Snapshot snapshot)
         {
