@@ -56,15 +56,16 @@ namespace RSExampleTest
         public void TestContainsPoint()
         {
             var rect = new Rectangle(new Point(0, 0), new Point(1, 1));
-            var points = new[] {
-                new Tuple<Point, bool>(new Point(0.5f, 0.5f), true),
-                new Tuple<Point, bool>(new Point(0.25f, 0.75f), true),
-                new Tuple<Point, bool>(new Point(0.75f, 0.25f), true),
-                new Tuple<Point, bool>(new Point(-1f, 0.5f), false),
-                new Tuple<Point, bool>(new Point(-1f, -0.5f), false),
-                new Tuple<Point, bool>(new Point(1f, 0.5f), false),
-                new Tuple<Point, bool>(new Point(1f, -0.5f), false),
-                new Tuple<Point, bool>(new Point(-1f, 2f), false),
+            var points = new[] 
+            {
+                (new Point(0.5f, 0.5f), true),
+                (new Point(0.25f, 0.75f), true),
+                (new Point(0.75f, 0.25f), true),
+                (new Point(-1f, 0.5f), false),
+                (new Point(-1f, -0.5f), false),
+                (new Point(1f, 0.5f), false),
+                (new Point(1f, -0.5f), false),
+                (new Point(-1f, 2f), false),
             };
 
             for (var i = 0; i < points.Length; i++)
