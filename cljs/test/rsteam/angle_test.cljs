@@ -21,58 +21,47 @@
   (is (= (a/degrees 270)
          (a/opposite (a/degrees 90)))))
 
-(deftest dist
-  (testing "Without explicit mode it should choose the min"
+(deftest diff
+  (testing "diff"
     (is (close? (a/degrees 0)
-                (a/dist (a/degrees 0)
+                (a/diff (a/degrees 0)
                         (a/degrees 360))
                 0.00001))
     (is (close? (a/degrees 90)
-                (a/dist (a/degrees 45)
+                (a/diff (a/degrees 45)
                         (a/degrees -45))
                 0.00001))
     (is (close? (a/degrees 90)
-                (a/dist (a/degrees -45)
+                (a/diff (a/degrees -45)
                         (a/degrees 45))
                 0.00001))
     (is (close? (a/degrees 90)
-                (a/dist 11.780972450961723
+                (a/diff 11.780972450961723
                         -5.497787143782138)
                 0.00001)))
-  (testing "Mode :clockwise"
+  (testing "diff-clockwise"
     (is (close? (a/degrees 90)
-                (a/dist (a/degrees 45)
-                        (a/degrees -45)
-                        :clockwise)
+                (a/diff-clockwise (a/degrees 45)
+                                  (a/degrees -45))
                 0.00001))
     (is (close? (a/degrees 90)
-                (a/dist (a/degrees 45)
-                        (a/degrees 315)
-                        :clockwise)
+                (a/diff-clockwise (a/degrees 45)
+                                  (a/degrees 315))
                 0.00001))
     (is (close? (a/degrees 270)
-                (a/dist 11.780972450961723
-                        -5.497787143782138
-                        :clockwise)
+                (a/diff-clockwise 11.780972450961723
+                                  -5.497787143782138)
                 0.00001)))
-  (testing "Mode :counterclockwise"
+  (testing "diff-counterclockwise"
     (is (close? (a/degrees 270)
-                (a/dist (a/degrees 45)
-                        (a/degrees -45)
-                        :counterclockwise)
+                (a/diff-counterclockwise (a/degrees 45)
+                                         (a/degrees -45))
                 0.00001))
     (is (close? (a/degrees 270)
-                (a/dist (a/degrees 45)
-                        (a/degrees 315)
-                        :counterclockwise)
+                (a/diff-counterclockwise (a/degrees 45)
+                                         (a/degrees 315))
                 0.00001))
     (is (close? (a/degrees 90)
-                (a/dist 11.780972450961723
-                        -5.497787143782138
-                        :counterclockwise)
-                0.00001)))
-  (testing "Mode :invalid"
-    (is (thrown? ExceptionInfo
-                 (a/dist (a/degrees 45)
-                         (a/degrees -45)
-                         :invalid)))))
+                (a/diff-counterclockwise 11.780972450961723
+                                         -5.497787143782138)
+                0.00001))))
