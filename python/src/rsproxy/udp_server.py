@@ -12,7 +12,7 @@ class UDPServer:
 
     def start(self):
         self.server_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.server_sock.bind(("127.0.0.1", port))
+        self.server_sock.bind(("", port))
         self.server_sock.settimeout(0.1)
         print("UDP Server listening on port " + str(port))
 

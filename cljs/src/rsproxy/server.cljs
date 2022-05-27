@@ -1,6 +1,7 @@
 (ns rsproxy.server
   (:require ["dgram" :as dgram]
-            [clojure.core.async :as a :refer [go go-loop timeout <!]]))
+            [oops.core :refer [oget]]
+            [clojure.core.async :as a :refer [go <!]]))
 
 (defn make-server []
   {:socket nil
@@ -48,7 +49,8 @@
            (.on "message" (fn [msg rinfo]
                             (.send socket
                                    (process-msg server msg)
-                                   (.-port rinfo))))
+                                   (oget rinfo :port)
+                                   (oget rinfo :address))))
            (.bind port #(do (println "UDP server listening on port" port)
                             (a/close! wait))))
          (<! wait)))))

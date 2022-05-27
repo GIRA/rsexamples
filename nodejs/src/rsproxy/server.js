@@ -31,7 +31,7 @@ class Server {
     });
     socket.on("message", (msg, rinfo) => {
       let response = this.processMessage(msg);
-      socket.send(response, rinfo.port);
+      socket.send(response, rinfo.port, rinfo.address);
     });
     socket.bind(port, () => {
       console.log("Server listening on port " + port);
