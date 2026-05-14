@@ -8,10 +8,10 @@ Estos equipos están diseñados para funcionar conectándose a alguno de los con
 
 Cada carpeta dentro de este repositorio incluye el mismo equipo programado en distintos lenguajes de programación, al momento de escribir este texto disponemos de ejemplos en 4 lenguajes de programación:
 
-* [Python](https://github.com/GIRA/rsexamples/tree/main/python)
-* [.NET](https://github.com/GIRA/rsexamples/tree/main/dotnet)
-* [JavaScript](https://github.com/GIRA/rsexamples/tree/main/nodejs)
-* [ClojureScript](https://github.com/GIRA/rsexamples/tree/main/cljs)
+* [Python](https://github.com/GIRA/rsexamples/tree/master/python)
+* [.NET](https://github.com/GIRA/rsexamples/tree/master/dotnet)
+* [JavaScript](https://github.com/GIRA/rsexamples/tree/master/nodejs)
+* [ClojureScript](https://github.com/GIRA/rsexamples/tree/master/cljs)
 
 Las instrucciones para ejecutar el equipo específicas para cada lenguaje se pueden encontrar en el README correspondiente. Sin embargo, en general, implican ejecutar el códigod el equipo (una única instancia para los 3 robots) indicando el puerto a utilizar para comunicarse con el proxy (usualmente `12345` para el equipo amarillo y `54321` para el equipo azul).
 
